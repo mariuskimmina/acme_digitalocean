@@ -12,7 +12,7 @@ all that will automatically be done for you.
 
 This plugin uses Digitalocean as DNS provider to solve the acme DNS-01 challenge - meaning that you'll need to have a domain registered at digitalocean.
 
-Usage
+## Usage
 
 First you need to compile CoreDNS with this plugin
 
