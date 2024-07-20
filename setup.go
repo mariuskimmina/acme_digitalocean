@@ -3,6 +3,7 @@ package acme
 import (
 	"context"
 	ctls "crypto/tls"
+	"os"
 	"path/filepath"
 	"strconv"
 	"sync"
@@ -15,6 +16,7 @@ import (
 	"github.com/coredns/coredns/plugin/pkg/tls"
 
 	"github.com/caddyserver/certmagic"
+	"github.com/libdns/digitalocean"
 )
 
 func init() { plugin.Register("tls", setup) }
@@ -102,7 +104,13 @@ func parseTLS(c *caddy.Controller) error {
 				}
 			}
 
-			dnsSolver := createDNSSolver(dnsProvider)
+			dnsSolver := &certmagic.DNS01Solver{
+				DNSManager: certmagic.DNSManager{
+					DNSProvider: &digitalocean.Provider{
+						APIToken: os.Getenv("DO_AUTH_TOKEN"),
+					},
+				},
+			}
 			pool, err := setupCertPool(caCert)
 			if err != nil {
 				log.Errorf("Failed to setup certificate pool: %v\n", err)
