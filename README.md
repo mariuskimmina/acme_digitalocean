@@ -12,6 +12,29 @@ all that will automatically be done for you.
 
 This plugin uses Digitalocean as DNS provider to solve the acme DNS-01 challenge - meaning that you'll need to have a domain registered at digitalocean.
 
+Usage
+
+First you need to compile CoreDNS with this plugin
+
+```
+# Clone CoreDNS
+git clone https://github.com/coredns/coredns
+cd coredns
+
+# replace the original tls plugin with this tlsplus plugin
+sed -i 's/tls:tls/tls:github.com\/mariuskimmina\/coredns-tlsplus/g' plugin.cfg
+
+# Get the module
+go get github.com/mariuskimmina/coredns-tlsplus
+
+
+# Compile
+make gen
+make
+```
+
+Example Corefile
+
 ```
 tls://.:5555 {
     debug
