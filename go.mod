@@ -1,6 +1,6 @@
 module github.com/mariuskimmina/acme_digitalocean
 
-go 1.22.2
+go 1.21.0
 
 require (
 	github.com/caddyserver/certmagic v0.21.3
