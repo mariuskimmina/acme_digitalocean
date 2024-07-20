@@ -51,7 +51,7 @@ func parseTLS(c *caddy.Controller) error {
 			var err error
 			var email string
 			var domain string
-			var dnsProvider string
+			//var dnsProvider string
 			caServer := certmagic.LetsEncryptStagingCA
 			var caCert string
 			checkInterval := 60
@@ -81,12 +81,12 @@ func parseTLS(c *caddy.Controller) error {
 					if err != nil {
 						return plugin.Error("tls", c.Errf("checkIntervalArgs needs to be a number"))
 					}
-				case "dnsProvider":
-					dnsProviderArgs := c.RemainingArgs()
-					if len(dnsProviderArgs) > 1 {
-						return plugin.Error("tls", c.Errf("Too many arguments to dnsProvider"))
-					}
-					dnsProvider = dnsProviderArgs[0]
+				//case "dnsProvider":
+				//dnsProviderArgs := c.RemainingArgs()
+				//if len(dnsProviderArgs) > 1 {
+				//return plugin.Error("tls", c.Errf("Too many arguments to dnsProvider"))
+				//}
+				//dnsProvider = dnsProviderArgs[0]
 				case "certPath":
 					certPathArgs := c.RemainingArgs()
 					if len(certPathArgs) > 1 {
